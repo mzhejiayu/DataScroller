@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		<style type="text/css">
+			.pointer{
+				border-left: 1px solid gray;
+				position: absolute;
+				height: 100px;
+				left: 50%;
+				transform:translateX(-.5px);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="pointer"></div>
+		<div class="main-container">
+			<canvas class="main-container__canvas"></canvas>
+		</div>
+		<div class="data-display"></div>
+	</body>
+	<script src="../statics/jquery.min.js"></script>
+	<script src="../statics/DataScroller.js"></script>
+	<script type="text/javascript">
+		//fire DataScroller
+		DataScroller({
+                "short_line":15,
+                "long_line":30,
+                "canvas_height":80,
+                "canvas_width":4500,
+                "container_width":$(".main-container").width(),
+                "pointer_left":$(".main-container").width()/2,
+                "gap_x":15,
+                "vpergap":10,
+                "strokeclr":"#aaaaaa",
+                "min":100,
+                "max":100000
+        },$(".main-container__canvas")[0],$(".main-container"),$(".data-display"));
+	</script>
+</html>
