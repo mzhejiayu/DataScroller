@@ -28,13 +28,13 @@ var DataScroller = function(config,canvas_dom,$canvas_container,$data_display){
             var drwCanvas = (function(){
                 var count = 0;
                 var max = Math.floor(config.to_go/gap)+1;
-                while(count<=max){
+                while(count<max){
                     var x = config.pointer_left+count*gap;
                     var y = config.canvas_height;
                     if(count%config.long_count===0){
                         //绘制长线
                         var ty = y-config.long_line;
-                        strktxt(x,ty,config.min+(config.max-config.min)*(count/max),context);
+                        strktxt(x,ty,Math.floor(config.min+(config.max-config.min)*(count/max)),context);
                     }
                     else{
                         var ty = y-config.short_line;
@@ -44,6 +44,8 @@ var DataScroller = function(config,canvas_dom,$canvas_container,$data_display){
 
                     count++;
                 }
+                drwline(config.to_go+config.pointer_left,config.canvas_height,config.to_go+config.pointer_left,config.canvas_height-config.long_line,context);
+                strktxt(config.to_go+config.pointer_left,config.canvas_height-config.long_line,config.max,context);
             })();
             $canvas_container.css("overflowX","scroll")
             $canvas_container.scrollLeft(0);
